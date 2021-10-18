@@ -10,6 +10,7 @@ function ClockComponent({locale}){
   )
 }
 
+
 // class component
 class ClockComponentNew extends React.Component{
   render() {
