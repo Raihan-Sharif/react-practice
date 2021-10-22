@@ -1,6 +1,10 @@
 import React from "react";
-
-class Clock extends React.Component{
+import Button from "./Button";
+// in this clock 4 i am mitigate "this" problem in another way.
+// Here i create another component names "button" and if clock4 reRender then button also
+// rerender but if we want to stop rerender then we should us shouldComponentUpdate
+// Life Cycle method to take decision to re-render or not.
+class Clock4 extends React.Component{
 
     constructor(props){
         super(props)
@@ -10,12 +14,7 @@ class Clock extends React.Component{
             counter:0
         }
     }
-// Click Event: Arrow function resolved the "this" error in this callback function.  
-handleClick = () => {
-    this.setState({
-        locale: 'en-US',
-    })
-}
+
 
 // componentDidMount life cycle call after component render in real dom.
 componentDidMount(){
@@ -30,7 +29,12 @@ componentWillUnmount(){
     clearInterval(this.clockTimer);
 }
 
-
+handleClick = (locale) => {
+    const changeLocale = this.state.locale === 'bn-BD'?locale:'bn-BD';
+    this.setState({
+        locale:changeLocale
+    })
+}
     tick(){
         this.setState({
             date: new Date(),
@@ -43,6 +47,8 @@ componentWillUnmount(){
     }
     render(){
         const {locale,date,counter} = this.state;
+        console.log("Clock 4 Rendered.");
+
         return(
                 <div>
                     <h1 className="heading">
@@ -50,10 +56,10 @@ componentWillUnmount(){
                         <br/>
                         <span className="text">Count = {counter}</span>
                     </h1>
-                    <button type="button" onClick={this.handleClick}>en-US Locale</button>
+                    <Button btnName="Click Me!" btnFunction={this.handleClick} btnParam={locale}></Button>
                 </div>
                 )
     }
 }
 
-export default Clock;
+export default Clock4;

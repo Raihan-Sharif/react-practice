@@ -1,6 +1,8 @@
 import React from "react";
-
-class Clock extends React.Component{
+// in this clock 3 i am mitigate "this" problem in another way.
+// Here i pass "this" in onClick event by bind "this" 
+// Here i also pass params in onclick event
+class Clock3 extends React.Component{
 
     constructor(props){
         super(props)
@@ -10,12 +12,7 @@ class Clock extends React.Component{
             counter:0
         }
     }
-// Click Event: Arrow function resolved the "this" error in this callback function.  
-handleClick = () => {
-    this.setState({
-        locale: 'en-US',
-    })
-}
+
 
 // componentDidMount life cycle call after component render in real dom.
 componentDidMount(){
@@ -30,7 +27,13 @@ componentWillUnmount(){
     clearInterval(this.clockTimer);
 }
 
-
+handleClick(locale){
+    const changeLocale = this.state.locale === 'bn-BD'?locale:'bn-BD';
+    console.log(changeLocale);
+    this.setState({
+        locale:changeLocale
+    })
+}
     tick(){
         this.setState({
             date: new Date(),
@@ -50,10 +53,10 @@ componentWillUnmount(){
                         <br/>
                         <span className="text">Count = {counter}</span>
                     </h1>
-                    <button type="button" onClick={this.handleClick}>en-US Locale</button>
+                    <button type="button" onClick={this.handleClick.bind(this,'en-US')}>Toggle Locale</button>
                 </div>
                 )
     }
 }
 
-export default Clock;
+export default Clock3;
