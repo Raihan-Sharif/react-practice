@@ -1,15 +1,16 @@
 import React from "react";
 
 class Button extends React.Component{
-   /* constructor(props){
+    constructor(props){
         super(props);
+        this.state = {}
     }
-    */
+   
 
 // shouldComponentUpdate life cycle method take decison wheter component should update or not
 
 shouldComponentUpdate(nextProps){
-    if(nextProps === this.props)
+    if(nextProps.btnParam === this.props.btnParam)
         return false;
     else
         return true;
@@ -20,7 +21,7 @@ shouldComponentUpdate(nextProps){
 
         const {btnName, btnFunction, btnParam} = this.props;
         return(
-            <button type="button" onClick={btnFunction(btnParam)}>{btnName}</button>
+            <button type="button" onClick={() => btnFunction(btnParam)}>{btnName}</button>
         );
     }
 }

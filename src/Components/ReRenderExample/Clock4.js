@@ -29,12 +29,14 @@ componentWillUnmount(){
     clearInterval(this.clockTimer);
 }
 
-handleClick = (locale) => {
-    const changeLocale = this.state.locale === 'bn-BD'?locale:'bn-BD';
-    this.setState({
-        locale:changeLocale
-    })
-}
+    handleClick = (locale) => {
+        console.log(locale);
+       // const changeLocale = this.state.locale === 'bn-BD' ? 'en-US' : 'bn-BD';
+       // console.log('changeLocale: ',changeLocale);
+        this.setState({
+            locale:locale
+        })
+    }
     tick(){
         this.setState({
             date: new Date(),

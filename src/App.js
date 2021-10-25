@@ -9,7 +9,7 @@ function App() {
         <Clock locale="bn-BD"></Clock>
         <Clock2 locale="en-US"></Clock2>
         <Clock3 locale="bn-BD"></Clock3>
-        <Clock4 locale="bn-BD"></Clock4>
+        <Clock4 locale="en-US"></Clock4>
     </div>
   );
 }
